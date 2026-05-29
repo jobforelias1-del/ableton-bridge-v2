@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ableton-bridge"
+version = "2.0.0"
+description = "A clean Python wrapper around AbletonOSC for driving Ableton Live over OSC."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Silicon Click" }]
+keywords = ["ableton", "live", "osc", "abletonosc", "midi", "music"]
+dependencies = ["python-osc>=1.8"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov>=4", "ruff>=0.4", "black>=24"]
+
+[project.urls]
+"AbletonOSC" = "https://github.com/ideoforms/AbletonOSC"
+
+[tool.setuptools.packages.find]
+include = ["ableton_bridge*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["ableton_bridge"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = ["pragma: no cover", "def __repr__", "raise NotImplementedError"]
